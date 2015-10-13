@@ -70,4 +70,45 @@ Now run the Broker:
 python broker.py config.ini
 ```
 
+## Config file comments
+Here is the example config for 2 Asterisk servers:
+```
+[general]
+device_state = yes
+presence = no
+;debug, info, warning, error
+log_level = info
+request_timeout = 1000
+count_messages  = no
+verbose_messages = no
+
+[servers]
+sections = server-1, server-2
+
+[server-1]
+name = Console 1
+addr = 192.168.56.101
+cmd_port = 30967
+evt_port = 30968
+ami_trace = no
+
+[server-2]
+name = Console 2
+addr = 192.168.56.102
+cmd_port = 30967
+evt_port = 30968
+ami_trace = no
+```
+* device_state - distribute device state (catch DeviceStateChange action);
+* presence - distribute presence state (catch PresenceStateChange action);
+* log_level - logging level, currently only console logging is supported;
+* request_timeout - timeout on socket read operation in msec;
+* count_messages  - reserved for future use;
+* verbose_messages - print catched AMI messages;
+* addr - ip address of Asterisk server;
+* cmd_port - ØMQ socket for AMI actions (from /etc/asterisk/zmq_manager.conf);
+* evt_port - ØMQ socket for AMI events (from /etc/asterisk/zmq_manager.conf);
+* ami_trace - if yes print all AMI messages received from server.
+
+
 
