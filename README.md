@@ -52,6 +52,16 @@ Now restart Asterisk or load the module manually with
 module load res_zmq_manager.so
 ```
 
+#### Configure Asterisk hints
+All servers must share the same hints file. Here's an example:
+```
+exten => 100,hint,SIP/100&Custom:SIP/100
+exten => 100,hint,SIP/200&Custom:SIP/200
+```
+In this scenario SIP user 100 is connected to Asterisk-1, and user 200 - to Asterisk-2.
+When SIP/100 device state is changed then AMI event DeviceStateChange is generated and sent to ØMQ Broker application where it is distributed over all Asterisk servers it's connected to. This distribution is done in form of AMI action SetVar DEVICE_STATE which accepts Custom only devices. So Asterisk-2 server does not have SIP/100 connected and thus sets hint 100 to Custom:SIP/100 that it accepts from Asterisk-1 which in case is the state of SIP/100 @ Asterisk-1.
+
+
 ### Installing and running the Broker
 The Broker depends on python zmq library. It can be installed system wide or in virtualenv. Here we cover virtualenv way.
 ```
