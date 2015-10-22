@@ -13,6 +13,8 @@ So the Broker receives all AMI messages from all connected Asterisk servers and 
 DeviceStateChange or PresenceStateChange it passes these events to other servers using AMI action SetVar 
 with DEVICE_STATE and PRESENCE_STATE functions.
 
+So currently it supports only DeviceStateChange and PresenceStateChange but support for other messages can be easily implemented.
+
 ## Requirements ##
 * Python 2.7.
 * System libs libzmq and libzmq-dev.
