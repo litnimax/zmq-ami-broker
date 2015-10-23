@@ -1,5 +1,5 @@
 # ØMQ Asterisk Manager Interface (AMI) Broker
-ØMQ broker is used to distribute Asterisk AMI messges.
+ØMQ broker is used to distribute Asterisk AMI messages.
 It is based on res_zmq_manager module from [here](https://github.com/litnimax/asterisk-zmq).
 
 ## How it works ##
